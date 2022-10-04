@@ -26,6 +26,7 @@ class SignInScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     //#################### NOME DO APP
+
                     Text.rich(
                       TextSpan(
                         style: const TextStyle(
@@ -49,6 +50,7 @@ class SignInScreen extends StatelessWidget {
                     ),
 
                     //#################### CATEGORIAS ANIMADAS
+
                     SizedBox(
                       height: 50,
                       child: DefaultTextStyle(
@@ -72,6 +74,7 @@ class SignInScreen extends StatelessWidget {
               ),
 
               //#################### FORMULÁRIO LOGIN
+
               Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 32,
@@ -92,6 +95,7 @@ class SignInScreen extends StatelessWidget {
                       icon: Icons.email,
                       label: 'Email',
                     ),
+
                     //#################### SENHA
 
                     const CustomTextField(
@@ -124,7 +128,9 @@ class SignInScreen extends StatelessWidget {
                             ),
                           )),
                     ),
+
                     //#################### BOTÃO ESQUECEU A SENHA
+
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
@@ -136,7 +142,9 @@ class SignInScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+
                     //#################### DIVISOR
+
                     Padding(
                       padding: const EdgeInsets.only(bottom: 10),
                       child: Row(
@@ -162,6 +170,7 @@ class SignInScreen extends StatelessWidget {
                     ),
 
                     //#################### BOTÃO CRIAR CONTA
+
                     SizedBox(
                       height: 40,
                       child: OutlinedButton(
