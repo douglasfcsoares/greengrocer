@@ -1,9 +1,19 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:greengrocer/src/config/custom_colors.dart';
+import 'package:greengrocer/src/pages/home/components/category_tile.dart';
+import 'package:greengrocer/src/config/add_data.dart' as app_data;
+import 'package:greengrocer/src/pages/home/components/item_tile.dart';
 
-class HomeTab extends StatelessWidget {
+class HomeTab extends StatefulWidget {
   const HomeTab({Key? key}) : super(key: key);
+
+  @override
+  State<HomeTab> createState() => _HomeTabState();
+}
+
+class _HomeTabState extends State<HomeTab> {
+  String selectCategory = 'Frutas';
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +73,7 @@ class HomeTab extends StatelessWidget {
 
       body: Column(
         children: [
-          // Campo Pesquisa
+          // ############################ Campo Pesquisa
 
           Padding(
             padding: const EdgeInsets.symmetric(
@@ -94,11 +104,53 @@ class HomeTab extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
 
-          // Categorias
+          // ############################ Categorias
 
-          // Grid de Produtos
+          Container(
+            padding: const EdgeInsets.only(left: 25),
+            height: 40,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (_, index) {
+                return CategoryTile(
+                  onPressed: () {
+                    setState(() {
+                      selectCategory = app_data.categories[index];
+                    });
+                  },
+                  category: app_data.categories[index],
+                  isSelected: app_data.categories[index] == selectCategory,
+                );
+              },
+              separatorBuilder: (_, index) => const SizedBox(
+                width: 10,
+              ),
+              itemCount: app_data.categories.length,
+            ),
+          ),
+
+          // ############################ Grid de Produtos
+
+          Expanded(
+            child: GridView.builder(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+              physics: const BouncingScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                childAspectRatio: 9 / 11.5,
+              ),
+              itemCount: app_data.items.length,
+              itemBuilder: (_, index) {
+                return ItemTile(
+                  item: app_data.items[index],
+                );
+              },
+            ),
+          ),
         ],
       ),
     );
